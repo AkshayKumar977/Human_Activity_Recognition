@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Human Activity Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Human Activity Recognition</h1>
+        <p class="subtitle">
+            Upload a CSV file containing 128 time steps and 9 sensor features.
+        </p>
+
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+
+            <input type="file" name="file" accept=".csv" required>
+
+            <button type="submit">
+                Predict Activity
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="result">
+
+            <h2>Prediction</h2>
+
+            <p>{{ prediction }}</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
