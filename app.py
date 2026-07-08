@@ -1,12 +1,15 @@
+import os
 from flask import Flask,render_template,request
 import pandas as pd
 import numpy as np
 import torch
 from model import HAR_LSTM
 app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)
+MODEL_PATH = os.path.join(BASE_DIR,"models","lstm_har_model.pth")
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = HAR_LSTM()
-model.load_state_dict(torch.load(r'models\lstm_har_model.pth',map_location = device))
+model.load_state_dict(torch.load(MODEL_PATH,map_location = device))
 model.to(device)
 model.eval()
 activities = {
